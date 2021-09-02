@@ -1,7 +1,7 @@
 import styles from './Filter.module.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import actions from '../../redux/actions';
+import { changeFilter } from '../../redux/actions';
 
 const Filter = ({ value, onChange }) => (
   <label className={styles.labelName}>
@@ -20,7 +20,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: event => dispatch(actions.changeFilter(event.currentTarget.value)),
+  onChange: event => dispatch(changeFilter(event.currentTarget.value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -1,14 +1,16 @@
 {
-  "name": "react-hw-06-phonebook",
+  "name": "react-hw-07-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AnatoliyIliev.github.io/react-hw-06-phonebook",
+  "homepage": "https://AnatoliyIliev.github.io/react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
     "gh-pages": "^3.2.3",
+    "json-server": "^0.16.3",
     "modern-normalize": "^1.1.0",
     "mrm": "^3.0.8",
     "node-sass": "^6.0.1",
@@ -29,7 +31,8 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "api-server": "json-server --watch db.json --port 4040 --delay 300"
   },
   "eslintConfig": {
     "extends": [
