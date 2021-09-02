@@ -6,13 +6,25 @@ import {
   deleteContactsRequest,
   deleteContactSuccess,
   deleteContactError,
+  fetchContactsRequest,
+  fetchContactSuccess,
+  fetchContactError,
 } from './actions';
 
-axios.default.baseURL = 'http://localhost:4040';
+axios.defaults.baseURL = 'http://localhost:4040';
+
+const fetchContacts = () => dispatch => {
+  dispatch(fetchContactsRequest());
+
+  axios
+    .get('/contacts')
+    .then(({ data }) => dispatch(fetchContactSuccess(data)))
+    .catch(error => dispatch(fetchContactError(error)));
+};
 
 const addContacts = (name, number) => dispatch => {
-  const contact = { name, number, completed: false };
-
+  console.log(name, number);
+  const contact = { name, number };
   dispatch(addContactsRequest());
 
   axios
@@ -31,5 +43,7 @@ const deleteContacts = id => dispatch => {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
+  fetchContacts,
   addContacts,
+  deleteContacts,
 };

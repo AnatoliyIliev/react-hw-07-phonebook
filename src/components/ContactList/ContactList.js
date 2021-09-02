@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteContacts } from '../../redux/actions';
+import operations from '../../redux/operations';
 import ElementContactList from '../ElementContactList';
 import styles from './ContactList.module.scss';
 import PropTypes from 'prop-types';
@@ -42,7 +42,7 @@ const mapStateToProps = ({ contacts: { filter, items } }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(deleteContacts(id)),
+  onDeleteContact: id => dispatch(operations.deleteContacts(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

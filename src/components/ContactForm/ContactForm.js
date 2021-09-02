@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styles from './ContactForm.module.scss';
 import operations from '../../redux/operations';
 
-function ContactForm({ onSubmit }) {
+function ContactForm({ onSubmit, isLoadingContacts }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -28,7 +28,6 @@ function ContactForm({ onSubmit }) {
         return;
     }
   };
-  console.log();
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -72,6 +71,7 @@ function ContactForm({ onSubmit }) {
       <button className={styles.button} tupe="submit">
         Add contact
       </button>
+      {isLoadingContacts && <h2>Loading...</h2>}
     </form>
   );
 }
@@ -80,8 +80,12 @@ ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  isLoadingContacts: state.contacts.loading,
+});
+
 const mapDispatchToProps = dispatch => ({
   onSubmit: (name, number) => dispatch(operations.addContacts(name, number)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
