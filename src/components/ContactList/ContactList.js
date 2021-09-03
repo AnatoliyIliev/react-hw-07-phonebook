@@ -5,17 +5,20 @@ import styles from './ContactList.module.scss';
 import PropTypes from 'prop-types';
 
 const ContactList = ({ contacts, onDeleteContact }) => (
-  <ul className={styles.contactList}>
-    {contacts.map(({ id, name, number }) => (
-      <li className={styles.contactList_items} key={id}>
-        <ElementContactList
-          name={name}
-          number={number}
-          onDeleteContact={() => onDeleteContact(id)}
-        />
-      </li>
-    ))}
-  </ul>
+  <>
+    {/* <h1>nj jyj { contacts }</h1> */}
+    <ul className={styles.contactList}>
+      {contacts.map(({ name, number, id }) => (
+        <li className={styles.contactList_items} key={id}>
+          <ElementContactList
+            name={name}
+            number={number}
+            onDeleteContact={() => onDeleteContact(id)}
+          />
+        </li>
+      ))}
+    </ul>
+  </>
 );
 
 ContactList.propTypes = {
@@ -37,7 +40,7 @@ const getVisibleContacts = (allContacts, filter) => {
   return filterName;
 };
 
-const mapStateToProps = ({ contacts: { filter, items } }) => ({
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
   contacts: getVisibleContacts(items, filter),
 });
 
