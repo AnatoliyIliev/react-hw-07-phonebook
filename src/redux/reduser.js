@@ -16,6 +16,7 @@ import {
 const items = createReducer([], {
   [fetchContactSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, { payload }) => {
+    // console.log(state);
     const repeatСontact = state.some(contact => contact.name === payload.name);
     if (repeatСontact) {
       alert(`${payload.name} is already in contacts.`);

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import styles from './ContactForm.module.scss';
-import operations from '../../redux/operations';
+import { contactsOperations, contactsSelectors } from '../../redux';
 
 function ContactForm({ onSubmit, isLoadingContacts }) {
   const [name, setName] = useState('');
@@ -81,11 +81,12 @@ ContactForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLoadingContacts: state.contacts.loading,
+  isLoadingContacts: contactsSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (name, number) => dispatch(operations.addContacts(name, number)),
+  onSubmit: (name, number) =>
+    dispatch(contactsOperations.addContacts(name, number)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

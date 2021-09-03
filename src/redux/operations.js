@@ -18,12 +18,12 @@ const fetchContacts = () => dispatch => {
 
   axios
     .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactSuccess(data)))
+    .then(({ name, number }) => dispatch(fetchContactSuccess(name, number)))
     .catch(error => dispatch(fetchContactError(error)));
 };
 
 const addContacts = (name, number) => dispatch => {
-  console.log(name, number);
+  // console.log(name, number);
   const contact = { name, number };
   dispatch(addContactsRequest());
 
